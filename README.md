@@ -7,8 +7,10 @@
 3.运行app.py (flask)
 4.打开页面即可看到跑步计划
 ### 运行
+```
 pip3 install pandas openpy openpyxl flask
 python3 create_run_plan_excel.py
 python3 run_cron.py
 python3 app.py
 浏览器打开 http://127.0.0.1:5000/
+```
