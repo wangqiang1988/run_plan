@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>训练计划</title>
+</head>
+<body>
+  <h1>训练计划</h1>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>周次</th>
+        <th>日期</th>
+        <th>训练内容</th>
+        <th>距离 (km)</th>
+        <th>配速 (min/km)</th>
+        <th>心率 (bpm)</th>
+	<th>备注</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+  	{% for plan in plans %}
+    <tr>
+    <td>{{ plan['周数'] }}</td>
+    <td>{{ plan['日期'].strftime('%Y-%m-%d') }}</td>
+    <td>{{ plan['训练内容'] }}</td>
+    <td>{{ plan['距离(公里)'] }}</td>
+    <td>{{ plan['配速（分/公里）'] }}</td>
+    <td>{{ plan['心率区间'] }}</td>
+    <td>{{ plan['备注'] }}</td>
+    <td>
+      <form action="{{ url_for('mark_complete', row_id=loop.index0) }}" method="post" style="display:inline;"> 
+       <button type="submit">完成</button>
+      </form>      
+      <form action="{{ url_for('postpone', row_id=loop.index0) }}" method="post" style="display:inline;">
+        <button type="submit">延后</button>
+      </form>
+    </td>
+  </tr>
+  	{% endfor %}
+</tbody> 
+  </table>
+</body>
+</html>
+
